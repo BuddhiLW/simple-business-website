@@ -8,20 +8,20 @@
 (defn public
   []
   (let [active-page @(rf/subscribe [:active-page])
-        nav-items [{:id :recipes
-                    :name "Recipes"
-                    :href (router/path-for :recipes)
-                    :dispatch #(rf/dispatch [:set-active-nav :recipes])}
-                   {:id :become-a-chef
-                    :name "Chef"
+        nav-items [{:id :become-a-chef
+                    :name "Sobre nós"
                     :href (router/path-for :become-a-chef)
                     :dispatch #(rf/dispatch [:set-active-nav :become-a-chef])}
+                   {:id :recipes
+                    :name "Cursos"
+                    :href (router/path-for :recipes)
+                    :dispatch #(rf/dispatch [:set-active-nav :recipes])}
                    {:id :sign-up
-                    :name "Sign-up"
+                    :name "Consultoria"
                     :href (router/path-for :sign-up)
                     :dispatch #(rf/dispatch [:set-active-nav :sign-up])}
                    {:id :log-in
-                    :name "Log-in"
+                    :name "Comercialização"
                     :href (router/path-for :log-in)
                     :dispatch #(rf/dispatch [:set-active-nav :log-in])}]]
     [:<>

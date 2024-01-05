@@ -3,20 +3,23 @@
    [playground.components.page-nav :refer [page-nav]]
    [playground.become-a-chef.views.agreement :refer [agreement]]
    ["@mui/material" :refer [Box Grid Typography ButtonIcon IconButton
-                            Card CardMedia]]
+                            Card CardMedia CardContent]]
    ["@mui/icons-material/CheckCircle" :default CheckCircleIcon]))
 
 (defn become-a-chef
   []
-  (let [steps [{:header "Create your recipes for free"
-                :sub-header "Start by creating a draft. Add name and cooking time. Make your recipe stand out by adding picture and describe all needed ingredients and steps."}
-               {:header "Publish and get noticed"
-                :sub-header "Easily publish your recipes and allow people to get in touch with you via one click. Await a message for your first cooking event."}
-               {:header "Cook for the first time"
-                :sub-header "Talk to the interested person and agree on the date, time, and location. Show your best at the even and become a chef."}]]
+  (let [steps [{:img "/img/curso.jpeg"
+                :header "Cursos"
+                :sub-header "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut consequat enim, eget posuere tortor. Phasellus pretium hendrerit ornare. Etiam vitae ex in lectus dapibus pharetra ut ac massa. Pellentesque tincidunt suscipit dignissim. Suspendisse vestibulum blandit pretium."}
+               {:img "/img/consultoria.jpeg"
+                :header "Consultoria"
+                :sub-header "Vivamus sagittis quam et metus egestas faucibus. In sit amet consequat enim. Sed vel lorem sagittis, fringilla ante sagittis, convallis lacus. Sed eu tellus fringilla, finibus libero quis, varius ex. Aenean tempus finibus enim. Aliquam erat volutpat. Fusce mollis blandit auctor."}
+               {:img "/img/comercializacao-exportacao.jpeg"
+                :header "Comercialização e Exportação"
+                :sub-header "Proin lacinia vitae ante nec laoreet. Etiam id tempus urna, in vehicula metus. Aliquam ac rutrum sapien, vel efficitur arcu. Nullam in enim ut enim vehicula sagittis. Sed tristique, orci sed tristique scelerisque, neque urna porta enim, eu feugiat risus est sed sem."}]]
     [:> Box
-     [page-nav {:center "Become a Chef"
-                :right [agreement]}]
+     [page-nav {:center "Expedição Café"}]
+                ;; :right [agreement]}]
      [:> Grid {:container true
                :direction "row"
                :spacing 2}
@@ -25,17 +28,6 @@
                 :display "flex"
                 :justify-content "center"
                 :align-items "center"}
-       #_[:iframe {:src "https://br.investing.com/commodities/us-coffee-c"
-                   :style {:border "0px #ffffff none"
-                           :name "myiFrame"
-                           :scrolling "no"
-                           :frameborder "1"
-                           :marginheight "0px"
-                           :marginwidth "0px"
-                           :height "400px"
-                           :width "600px"
-                           :allowfullscreen true}}]
-
        ;; <iframe src="https://br.investing.com/commodities/us-coffee-c" style="border:0px #ffffff none;" name="myiFrame" scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" height="400px" width="600px" allowfullscreen></iframe>
        [:> Card {:sx {:max-width 700
                       :max-height 700
@@ -44,7 +36,11 @@
                  :variant "outlined"}
         [:> CardMedia {:component "img"
                        :class-name "rounded-full"
-                       :image "https://s0.wp.com/wp-content/themes/pub/cortado/assets/images/foodiesfeed.com_holding-espresso-cup_web-1024x1024.jpg"
+                       :src "./img/foto1.jpg"
+                       :sx {:height 500
+                            :width 500}
+
+                       ;; :image "https://s0.wp.com/wp-content/themes/pub/cortado/assets/images/foodiesfeed.com_holding-espresso-cup_web-1024x1024.jpg"
                        :alt "Hand holding a cup of coffee"}]]]
 
       [:> Grid {:item true
@@ -53,23 +49,37 @@
                 :sx {:flex-direction "column"}
                 :gap 3
                 :justify-content "flex-start"}
-       (for [{:keys [header sub-header]} steps]
+       (for [{:keys [img alt header sub-header]} steps]
          ^{:key header}
-         [:> Card {:sx {:maxwidth "70%"}}
-          [:> Box {:display "flex"
-                   :justify-content "flex-start"
-                   :maxwidth "95%"}
-           [:> Box {:display "flex"
-                    :justify-content "center"
-                    :pl 2
-                    :align-items "center"}
-            [:> IconButton {:sx {:color "#27AB83"}}
-             [:> CheckCircleIcon {:sx {:font-size "2em"}}]]]
-           [:> Box {:p 7
-                    :pl 3}
-            [:> Grid
-             [:> Typography {:variant "h4"}
-              header]]
-            [:> Grid
-             [:> Typography {:variant "body1"}
-              sub-header]]]]])]]]))
+         [:> Card {:sx {:max-width "70%"}}
+          [:> CardMedia
+           {:component "img"
+            :sx {:height "15em"}
+            :image img
+            :alt header}]
+          [:> CardContent
+           [:> Typography {:variant "h5"}
+                          header]
+           [:> Typography {:variant "body2" :color "text.secondary"} sub-header]]
+
+                        ;; :border-radius "15%"}}
+
+
+          #_[:> Box {:display "flex"
+                     :justify-content "flex-start"
+                     :max-width "95%"}
+                   
+             #_[:> Box {:display "flex"
+                        :justify-content "center"
+                        :pl 2
+                        :align-items "center"}
+                [:> IconButton {:sx {:color "#27AB83"}}
+                 [:> CheckCircleIcon {:sx {:font-size "2em"}}]]]
+             [:> Box {:p 7
+                      :pl 3}
+              [:> Grid
+               [:> Typography {:variant "h4"}
+                header]]
+              [:> Grid
+               [:> Typography {:variant "body1"}
+                sub-header]]]]])]]]))

@@ -1,5 +1,6 @@
 (ns playground.theme
   (:require
+   [clojure.string :as string]
    ["@mui/material/styles" :refer [createTheme]]))
    ;; ["react-bootstrap" :as bt]))
 
@@ -15,35 +16,38 @@
 ;;      :borderRadiusSm "8px"
 ;;      :borderRadiusLg "20px"
 ;;      :modalHeaderBorderColor "white"}]])
+;; (string/join ", " ["a" "b" "c" "d" "e"])
 
 (def theme (createTheme
             (clj->js
-             {:palette
-              {:primary
-               {:main "#2AF066"
-                :black "#130905"
-                :primary "#27AB83"
-                :secondary "#F7D070"
-                :light "#D9E2EC"
-                :dark "#2F3FFF"
-                :white "#FFFAFA"
-                :form "#F8F8FF"
-                :main-background "#c8c095ff" ;; #AA9F63
-                :borderRadius "20px"
-                :borderRadiusSm "10px"
-                :borderRadiusLg "18px"
-                :modalHeaderBorderColor "white"}}
-              {:secondary
-               {:main "#651fff"
-                :light "#0066ff"
-                :dark "#ff5500"
-                :contrastText "#ffcc00"}}
-              {:tertiary
-               {:main "#e91e63"}}
-              {:card-title
-               {:main "#FFEFEF"}}
-              {:card-title
-               {:main "#FFEFEF"}}})))
+             {:typography {:fontFamily (string/join ","
+                                                    ["Playfair Display"])}
+              :palette
+               {:primary
+                {:main "#2AF066"
+                 :black "#130905"
+                 :primary "#27AB83"
+                 :secondary "#F7D070"
+                 :light "#D9E2EC"
+                 :dark "#2F3FFF"
+                 :white "#FFFAFA"
+                 :form "#F8F8FF"
+                 :main-background "#C8C095" ;; #AA9F63
+                 :borderRadius "20px"
+                 :borderRadiusSm "10px"
+                 :borderRadiusLg "18px"
+                 :modalHeaderBorderColor "white"}}
+               {:secondary
+                {:main "#651fff"
+                 :light "#0066ff"
+                 :dark "#ff5500"
+                 :contrastText "#ffcc00"}}
+               {:tertiary
+                {:main "#e91e63"}}
+               {:card-title
+                {:main "#FFEFEF"}}
+               {:card-title
+                {:main "#FFEFEF"}}})))
 
 (def buttons (createTheme
               (clj->js
@@ -71,3 +75,20 @@
 (def cards (createTheme
             #js {:title #js {:main "#3A3F3F"}
                  :icon #js {:main "#ABCDEF"}}))
+
+
+(def footer-theme (createTheme
+                   (clj->js
+                    {:palette
+                     {:primary
+                      {:main "#F0EBE3"
+                       :main-background "#000000"
+                       :secondary "#FF00AA"
+                       :tertiary "#4433FF"}}})))
+
+#_(def footer (createTheme
+               (clj->js
+                {:palette {:primary
+                           {
+                            :footer1 "#F0EBE3"}}})))
+                            ;; :footer2 "#000000"}}})))

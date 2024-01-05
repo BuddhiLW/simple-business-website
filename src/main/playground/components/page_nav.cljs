@@ -3,7 +3,7 @@
    ["@mui/icons-material/Adjust" :default AdjustIcon]
    ;; ["@mui/icons-material/ChevronLeft" :default ChevronLeftIcon]
    ["@mui/icons-material/ArrowCircleLeftRounded" :default ArrowCircleLeftRoundedIcon]
-   ["@mui/material" :refer [Box Button Grid Typography  colors]]
+   ["@mui/material" :refer [Box Button Grid Typography  colors Avatar]]
    [playground.router :as router]))
 
 (defn page-nav
@@ -26,19 +26,23 @@
                    :variant "light"
                    :aria-label "Back"
                    :href (router/path-for left)}
-        [:> ArrowCircleLeftRoundedIcon {:sx {:font-size "2.5rem"
-                                             :color (get-in (js->clj colors :keywordize-keys true) [:pink :500])}}]]
+         [:> ArrowCircleLeftRoundedIcon {:sx {:font-size "2.5rem"
+                                              :color (get-in (js->clj colors :keywordize-keys true) [:pink :500])}}]]
        [:> Button {:my "20"
                    :variant "light"
                    :aria-label "Back"}
-        [:> AdjustIcon {:sx {:font-size "2.5em"}}]])]
+         [:> Avatar {:src "/img/logo-expedicao-cafe.jpg"
+                     :sx {:width 120
+                          :height 120}}]
+         #_[:> AdjustIcon {:sx {:font-size "2.5em"}}]])]
     [:> Box {:justify-content "center"}
      (if (= (type center) (type "String"))
        [:> Typography {:variant "h2"
+                       :fontStyle "italic"
                        :color "inherit"
                        :py 5
-                       :font-size "2.5rem"
-                       :font-weight 700}
+                       :font-size "6rem"
+                       :font-weight 400}
         center]
        center)]
     [:> Box

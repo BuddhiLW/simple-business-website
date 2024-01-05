@@ -54,7 +54,10 @@
    [playground.stripe.events]
    ;--- free-paywall
    [playground.free-paywall.views.free-paywall :refer [free-paywall-page]]
-   [playground.free-paywall.events]))
+   [playground.free-paywall.events]
+   ;--- footer ---
+   [playground.footer.views.footer :refer [footer]]))
+
 
 ;; ---------- END requires ---------
 (defn pages
@@ -79,7 +82,8 @@
     [:<>
      [:> mui/CssBaseline]
      [:> mui/ThemeProvider {:theme theme}
-      [:> mui/Grid {:background-color "primary.main-background"}
+      [:> mui/Grid {:background-color "primary.main-background"
+                    :id "wrapper"}
        [:> mui/Box {:py 1
                     :component "nav"
                     :variant "dense"
@@ -88,7 +92,8 @@
                     :justify-content "flex-end"
                     :container "true"}
         [:> mui/Box [nav]]]
-       [pages active-page]]]]))
+       [pages active-page]
+       [footer]]]]))
 
 ;; -----------------------------------------------------------------------------
 ;; Mount logic
