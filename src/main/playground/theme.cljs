@@ -73,22 +73,24 @@
               :tertiary "#4433FF"}}})))
 
 (def cards (createTheme
-            #js {:title #js {:main "#3A3F3F"}
-                 :icon #js {:main "#ABCDEF"}}))
+            (clj->js
+             {:palette
+              {:primary
+                {:main "#3A3F3F"
+                 :light "#FFFAFA"}}})))
 
 
 (def footer-theme (createTheme
                    (clj->js
-                    {:palette
+                    {:components
+                     {:MuiTypography
+                      {:styleOverrides
+                       {:root
+                        {:font-size "1.2rem"}}}}
+                     :palette
                      {:primary
                       {:main "#F0EBE3"
+                       :contrast "#BBA987"
                        :main-background "#000000"
-                       :secondary "#FF00AA"
                        :tertiary "#4433FF"}}})))
 
-#_(def footer (createTheme
-               (clj->js
-                {:palette {:primary
-                           {
-                            :footer1 "#F0EBE3"}}})))
-                            ;; :footer2 "#000000"}}})))

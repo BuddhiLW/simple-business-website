@@ -14,7 +14,8 @@
                 :on-click dispatch
                 :ml 2
                 :pb 10
-                :sx {"&:hover" {:background-color "primary.main"}
+                :sx {"&:hover" {:background-color "primary.light"}
+                     :font-size "0.6em"
                      :as "a"}
                 :href href}
      (if (= active-page id)

@@ -41,7 +41,7 @@
                        :fontStyle "italic"
                        :color "inherit"
                        :py 5
-                       :font-size "6rem"
+                       :font-size "4rem"
                        :font-weight 400}
         center]
        center)]
