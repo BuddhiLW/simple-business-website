@@ -24,7 +24,7 @@
                                                     ["Playfair Display"])}
               :palette
                {:primary
-                {:main "#2AF066"
+                {:main "#BBA987"
                  :black "#130905"
                  :primary "#27AB83"
                  :secondary "#F7D070"
@@ -66,11 +66,22 @@
 
 (def nav (createTheme
           (clj->js
-           {:palette
+           {:components
+            {:MuiTypography
+             {:styleOverrides
+              {:root
+               {:breakpoints
+                 {:xs
+                  {:font-size "1rem"}
+                  :sm
+                  {::font-size "1.2rem"}
+                  :md
+                  {::font-size "1.4rem"}}}}}}
+            :palette
             {:primary
              {:main "#000"
-              :secondary "#FF00AA"
-              :tertiary "#4433FF"}}})))
+              :secondary "#FFFAFA"
+              :tertiary "#F0EBE3"}}})))
 
 (def cards (createTheme
             (clj->js

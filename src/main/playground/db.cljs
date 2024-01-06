@@ -10,6 +10,7 @@
                      :files {:path nil}
                      :nav     {:active-page   :recipes
                                :active-nav    :recipes
+                               :active-menu   false
                                :active-modal  nil
                                :active-recipe nil
                                :active-inbox  nil}

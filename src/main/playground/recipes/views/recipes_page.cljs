@@ -13,7 +13,7 @@
   (let [logged-in? @(rf/subscribe [:logged-in?])]
     (fn []
       (let [drafts @(rf/subscribe [:filter/draft])]
-        [:<>
+        [:> Grid {:flex-grow 3}
          [page-nav {:center "Recipes"
                     :right (when logged-in?
                              [:<>

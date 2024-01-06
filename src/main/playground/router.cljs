@@ -3,19 +3,19 @@
             [pushy.core :as pushy]
             [re-frame.core :as rf]))
 
-(def routes ["/" {""              :become-a-chef
-                  "become-a-chef" :become-a-chef
-                  "saved/"        :saved
-                  "recipes/"      {"" :recipes
-                                   [:recipe-id] :recipe}
-                  "inbox/"        {"" :inboxes
-                                   [:inbox-id] :inbox}
-                  "profile"       :profile
-                  "sign-up"       :sign-up
-                  "log-in"        :log-in
-                  "stripe"        :stripe
-                  "upload-file"   :upload-file
-                  "free-paywall"  :free-paywall}])
+(def routes ["/" {""                   :become-a-chef
+                  "cursos/"           {"" :recipes
+                                       [:recipe-id] :recipe}
+                  "consultoria"       :sign-up
+                  "comercializacao"   :log-in}])
+                  ;; "inbox/"            {"" :inboxes
+                  ;;                      [:inbox-id] :inbox}
+                  ;; "profile"           :profile
+                  ;; "become-a-chef"     :become-a-chef
+                  ;; "saved/"            :saved
+                  ;; "stripe"            :stripe
+                  ;; "upload-file"       :upload-file
+                  ;; "free-paywall"      :free-paywall}])
 
 (def history
   (let [dispatch #(rf/dispatch [:route-changed %])

@@ -1,9 +1,31 @@
 (ns playground.nav.views.public
   (:require
-   ["@mui/material" :refer [Box]]
+   ["@mui/material" :refer [Box Container AppBar IconButton MenuItem Button Typography Toolbar]]
+   ["@mui/icons-material" :as mui-icons]
    [playground.nav.views.nav-item :refer [box]]
    [playground.router :as router]
    [re-frame.core :as rf]))
+
+(defn handle-open-nav-menu
+  [])
+  
+
+(defn handle-close-nav-menu [dispatch]
+  (rf/dispatch [:set-open-nav-menu false])
+  dispatch)
+
+#_(defn drop-menu [nav-items]
+    (fn []
+      (if @(rf/subscribe [:nav/active-menu])
+        [:> Box {:display "flex"
+                 :flex-direction "column"
+                 :background-color "primary.black"}
+           (for [{:keys [id name href dispatch]} nav-items]
+             ^{:key id}
+             [:> Button {:href href}
+               [:> MenuItem {:on-click #(handle-close-nav-menu dispatch)}
+                [:> Typography {:text-align "center"} name]]])]
+        [:div])))
 
 (defn public
   []
@@ -24,14 +46,27 @@
                     :name "Comercialização"
                     :href (router/path-for :log-in)
                     :dispatch #(rf/dispatch [:set-active-nav :log-in])}]]
-    [:<>
-     [:> Box {:display "flex"
-              :justify-content "flex-end"
-              :py 1}
-      (for [{:keys [id name href dispatch]} nav-items]
-        [box {:key id
-              :id id
-              :name name
-              :href href
-              :dispatch dispatch
-              :active-page active-page}])]]))
+     [:<>
+       ;; [drop-menu nav-items]
+       [:> AppBar {:position "static"}
+        [:> Container {:py 1}
+         [:> Toolbar {:disable-gutters true
+                       :sx {:display "flex"
+                            :justify-content "center"
+                            :flex-wrap "wrap"}}
+          #_[:> Button {:on-click #(rf/dispatch [:set-open-nav-menu true])}
+              [:> IconButton {:sx {:display { :xs "flex", :md "none"}}}
+                 [:> mui-icons/Menu]]]
+          (for [{:keys [id name href dispatch]} nav-items]
+            ^{:key id}
+            [:> Box #_{:sx {:display "inline" #_{:xs "None"
+                                                 :md "inline"}}}
+             [box {:key id
+                   :id id
+                   :name name
+                   :href href
+                   :dispatch dispatch
+                   :active-page active-page}]])]]]]))
+      
+      ;; [drop-menu nav-items]
+      ;; [:div "not active"])])))

@@ -79,19 +79,24 @@
 
 (defn- main []
   (let [active-page @(rf/subscribe [:active-page])]
-    [:<>
+    [:div
      [:> mui/CssBaseline]
      [:> mui/ThemeProvider {:theme theme}
       [:> mui/Grid {:background-color "primary.main-background"
-                    :id "wrapper"}
-       [:> mui/Box {:py 1
-                    :component "nav"
-                    :variant "dense"
-                    :fluid "false"
-                    :display "flex"
-                    :justify-content "flex-end"
-                    :container "true"}
-        [:> mui/Box [nav]]]
+                    :id "wrapper"
+                    :container true
+                    :sx {:width "100vw"
+                         :display "flex"
+                         :flex-direction "column"}}
+       [nav]
+       ;; [:> mui/Box {:py 1
+       ;;              :component "nav"
+       ;;              :variant "dense"
+       ;;              :fluid "false"
+       ;;              :display "flex"
+       ;;              :justify-content "flex-end"
+       ;;              :container "true"}
+       ;;  [:> mui/Box [nav]]]
        [pages active-page]
        [footer]]]]))
 

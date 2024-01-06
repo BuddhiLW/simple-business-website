@@ -55,6 +55,12 @@
  (fn [nav _]
    (assoc nav :active-modal nil)))
 
+(reg-event-db
+ :set-open-nav-menu
+ (fn [nav [_ open-nav-menu]]
+   (assoc nav :active-menu open-nav-menu)
+   (js/console.log open-nav-menu)))
+
 (comment)
  ;; (rf/dispatch [:set-active-nav :id-nav]))
  ;; (fn nav [a b]]) -> (a <-> :set-active-nav) ^ (b <-> :id-nav))

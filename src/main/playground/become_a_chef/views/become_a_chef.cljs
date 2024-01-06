@@ -1,12 +1,12 @@
 (ns playground.become-a-chef.views.become-a-chef
   (:require
    [playground.components.page-nav :refer [page-nav]]
-   [playground.become-a-chef.views.agreement :refer [agreement]]
+   ;; [playground.become-a-chef.views.agreement :refer [agreement]]
    [playground.theme :refer [cards]]
    ["@mui/material" :refer [Box Grid Typography ButtonIcon IconButton
-                            Card CardMedia CardContent ThemeProvider]]
+                            Card CardMedia CardContent ThemeProvider]]))
 
-   ["@mui/icons-material/CheckCircle" :default CheckCircleIcon]))
+   ;; ["@mui/icons-material/CheckCircle" :default CheckCircleIcon]))
 
 (defn become-a-chef
   []
@@ -25,24 +25,33 @@
        [page-nav {:center "Expedição Café"}]
        [:> Grid {:container true
                  :direction "row"
-                 :spacing 2}
+                 :mb 3}
         [:> Grid {:item true
                   :xs 6
                   :display "flex"
                   :justify-content "center"
                   :align-items "center"}
-         [:> Card {:sx {:max-width 700
-                        :max-height 700
-                        :border-radius "100%"
-                        :box-shadow 4}
-                   :class-name "rounded-full"
-                   :variant "outlined"}
+         [:> Card {:sx {:background-color "inherit"}
+                   :variant "plain"}
           [:> CardMedia {:component "img"
+                         :sx {:max-width 700
+                              :max-height 700
+                              :border-radius "100%"
+                              :box-shadow 4}
                          :class-name "rounded-full"
-                         :src "./img/foto1.jpg"
-                         :sx {:height 500
-                              :width 500}
-                         :alt "Hand holding a cup of coffee"}]]]
+                         :image "./img/foto1.jpg"
+                         :alt "Hand holding a cup of coffee"}]
+          [:> CardContent {:variant "body2"
+                           :sx {:max-width 700}}
+           [:> Typography {:variant "h2"
+                           :mb 1
+                           :sx {:text-decoration "underline"
+                                :font-style "bold"}}
+            "Quem somos"]
+           [:> Typography {:variant "p"
+                           :font-size "1.3rem"
+                           :color "text.secondary"}
+            "Proin blandit nulla eu justo ornare pulvinar. Phasellus ornare, lectus at vehicula molestie, lacus tortor vulputate lectus, sit amet viverra urna sem eu felis. Quisque varius accumsan nisi, ut finibus lorem condimentum eu."]]]]
 
         [:> Grid {:item true
                   :xs 6

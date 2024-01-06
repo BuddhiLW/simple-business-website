@@ -37,11 +37,11 @@
          #_[:> AdjustIcon {:sx {:font-size "2.5em"}}]])]
     [:> Box {:justify-content "center"}
      (if (= (type center) (type "String"))
-       [:> Typography {:variant "h2"
-                       :fontStyle "italic"
+       [:> Typography {:variant "h1"
+                       :font-style "italic"
+                       :font-family "serif"
                        :color "inherit"
                        :py 5
-                       :font-size "4rem"
                        :font-weight 400}
         center]
        center)]

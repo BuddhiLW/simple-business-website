@@ -19,6 +19,12 @@
    (get nav :active-page)))
 
 (reg-sub
+ :nav/active-menu
+ :<- [:nav]
+ (fn [nav _]
+   (get nav :active-menu)))
+
+(reg-sub
  :nav/active-recipe
  (fn [db _]
    (get-in db [:nav :active-recipe])))
