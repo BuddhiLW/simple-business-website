@@ -1,6 +1,6 @@
 # Standard single-page business website 
 
-Page with four pages:
+Business-focused website, with four pages:
 - A landing page;
 - Gallery page;
 - Page with third-party API calls;
