@@ -31,7 +31,7 @@
        [:> Button {:my "20"
                    :variant "light"
                    :aria-label "Back"}
-         [:> Avatar {:src "/img/logo-expedicao-cafe.jpg"
+         [:> Avatar {:src "./img/logo-expedicao-cafe.jpg"
                      :sx {:width 120
                           :height 120}}]
          #_[:> AdjustIcon {:sx {:font-size "2.5em"}}]])]

@@ -11,17 +11,17 @@
 
 (defn become-a-chef
   []
-  (let [steps [{:img "/img/curso.jpeg"
+  (let [steps [{:img "./img/curso.jpeg"
                 :header "Cursos"
                 :sub-header "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut consequat enim, eget posuere tortor. Phasellus pretium hendrerit ornare. Etiam vitae ex in lectus dapibus pharetra ut ac massa. Pellentesque tincidunt suscipit dignissim. Suspendisse vestibulum blandit pretium."
                 :href (router/path-for :recipes)
                 :dispatch #(rf/dispatch [:set-active-nav :recipes])}
-               {:img "/img/consultoria.jpeg"
+               {:img "./img/consultoria.jpeg"
                 :header "Consultoria"
                 :sub-header "Vivamus sagittis quam et metus egestas faucibus. In sit amet consequat enim. Sed vel lorem sagittis, fringilla ante sagittis, convallis lacus. Sed eu tellus fringilla, finibus libero quis, varius ex. Aenean tempus finibus enim. Aliquam erat volutpat. Fusce mollis blandit auctor."
                 :href (router/path-for :sign-up)
                 :dispatch #(rf/dispatch [:set-active-nav :sign-up])}
-               {:img "/img/comercializacao-exportacao.jpeg"
+               {:img "./img/comercializacao-exportacao.jpeg"
                 :header "Comercialização e Exportação"
                 :sub-header "Proin lacinia vitae ante nec laoreet. Etiam id tempus urna, in vehicula metus. Aliquam ac rutrum sapien, vel efficitur arcu. Nullam in enim ut enim vehicula sagittis. Sed tristique, orci sed tristique scelerisque, neque urna porta enim, eu feugiat risus est sed sem."
                 :href (router/path-for :log-in)
