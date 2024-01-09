@@ -63,18 +63,18 @@
 (defn pages
   [page-name]
   (case page-name
-    :profile           [profile]
+    ;; :profile           [profile]
     :sign-up           [sign-up]
     :log-in            [log-in]
     :become-a-chef     [become-a-chef]
-    :inbox             [inbox-page]
-    :inboxes           [inboxes-page]
-    :recipes           [recipes-page]
-    :recipe            [recipe-page]
+    ;; :inbox             [inbox-page]
+    ;; :inboxes           [inboxes-page]
+    :cursos            [recipes-page]
+    ;; :recipe            [recipe-page]
     :saved             [saved-page]
-    :stripe            [stripe-page]
-    :upload-file       [upload-file-page]
-    :free-paywall      [free-paywall-page]
+    ;; :stripe            [stripe-page]
+    ;; :upload-file       [upload-file-page]
+    ;; :free-paywall      [free-paywall-page]
     [become-a-chef]))
 
 (defn- main []

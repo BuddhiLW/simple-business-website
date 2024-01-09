@@ -6,6 +6,8 @@ Business-focused website, with four pages:
 - Page with third-party API calls;
 - Page with a form for contact via e-mail.
 
+
+
 ## License
 This project is [MIT licensed](./LICENSE).
 

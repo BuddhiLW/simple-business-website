@@ -22,14 +22,14 @@
          log-nav          (js/console.log (str "nav: " nav))
          log-handler      (js/console.log (str "handler: " handler))]
      (case handler
-       :recipes {:db       nav
-                 :dispatch [:http/get-recipes]}
+       ;; :recipes {:db       nav}
+                 ;; :dispatch [:mock/get-cursos]}
 
-       :recipe {:db       (assoc nav :active-recipe (keyword (:recipe-id route-params)))
-                :dispatch [:http/get-recipes]}
+       ;; :recipe {:db       (assoc nav :active-recipe (keyword (:recipe-id route-params)))}
+                ;; :dispatch [:mock/get-cursos]}
 
-       :inbox
-       {:db (assoc nav :active-inbox (keyword (:inbox-id route-params)))}
+       ;; :inbox
+       ;; {:db (assoc nav :active-inbox (keyword (:inbox-id route-params)))}
 
        {:db (do
               (js/console.log (str '(dissoc nav :active-recipe :active-inbox)

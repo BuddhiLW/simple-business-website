@@ -34,10 +34,10 @@
                     :name "Sobre nós"
                     :href (router/path-for :become-a-chef)
                     :dispatch #(rf/dispatch [:set-active-nav :become-a-chef])}
-                   {:id :recipes
+                   {:id :cursos
                     :name "Cursos"
-                    :href (router/path-for :recipes)
-                    :dispatch #(rf/dispatch [:set-active-nav :recipes])}
+                    :href (router/path-for :cursos)
+                    :dispatch #(rf/dispatch [:set-active-nav :cursos])}
                    {:id :sign-up
                     :name "Consultoria"
                     :href (router/path-for :sign-up)

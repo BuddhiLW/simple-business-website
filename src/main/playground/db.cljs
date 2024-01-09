@@ -4,17 +4,69 @@
    [playground.spec :refer [check-spec-interceptor]]
    [re-frame.core :as rf]))
 
-(def initial-app-db {:auth    {:uid nil}
+(def initial-app-db {:auth    {:uid "abc"} ;; nil
+                     :loading {:cursos true}
                      :errors  {}
                      :inboxes {}
                      :files {:path nil}
-                     :nav     {:active-page   :recipes
+                     :nav     {:active-page    :recipes
                                :active-nav    :recipes
                                :active-menu   false
                                :active-modal  nil
                                :active-recipe nil
                                :active-inbox  nil}
-                     :recipes {}
+                     :cursos {:curso-1 {:id          :curso-1
+                                        :name        "Curso 1"
+                                        :img         "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.argentina.gob.ar%2Fsites%2Fdefault%2Ffiles%2Fformacion_2.jpg&f=1&nofb=1&ipt=deb2488eecd98bc7f9e3a012f5e89c8d8be308fde71d9600c38e953e72982962&ipo=images"
+                                        :saved-count 4
+                                        :price       3900
+                                        :prep-time   30
+                                        :public      true
+                                        :topicos    {:topico-1 {:id      :topico-1
+                                                                :order   1
+                                                                :name    "Pasta"
+                                                                :amount  250
+                                                                :measure "gram"}
+                                                      :topico-2 {:id      :topico-2
+                                                                 :order   2
+                                                                 :name    "Tomatoes"
+                                                                 :amount  100
+                                                                 :measure "gram"}}}
+                              :curso-2 {:id          :curso-2
+                                        :name        "Curso 2"
+                                        :img         "https://res.cloudinary.com/schae/image/upload/f_auto,h_400,q_80/v1548183465/cheffy/recipes/pizza.jpg"
+                                        :saved-count 5
+                                        :prep-time   30
+                                        :price       3400
+                                        :public    true
+                                        :topicos    {:topico-1 {:id      :topico-1
+                                                                :order   1
+                                                                :name    "Pasta"
+                                                                :amount  250
+                                                                :measure "gram"}
+                                                      :topico-2 {:id      :topico-2
+                                                                 :order   2
+                                                                 :name    "Tomatoes"
+                                                                 :amount  100
+                                                                 :measure "gram"}}}
+                              :curso-3 {:id          :curso-3
+                                        :name        "Curso 3"
+                                        :img         "https://res.cloudinary.com/schae/image/upload/f_auto,h_400,q_80/v1548184422/cheffy/recipes/oatmeal-pancakes.jpg"
+                                        :saved-count 5
+                                        :price       1900
+                                        :prep-time   30
+                                        :public     true
+                                        :topicos    {:topico-1 {:id      :topico-1
+                                                                :order   1
+                                                                :name    "Pasta"
+                                                                :amount  250
+                                                                :measure "gram"}
+                                                     :topico-2 {:id      :topico-2
+                                                                :order   2
+                                                                :name    "Tomatoes"
+                                                                :amount  100
+                                                                :measure "gram"}}}}
+
                      :users   {"mike@mailinator.com" {:uid     "mike@mailinator.com"
                                                       :profile {:first-name "Mike"
                                                                 :last-name  "Jordan"

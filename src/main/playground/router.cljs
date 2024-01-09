@@ -4,8 +4,9 @@
             [re-frame.core :as rf]))
 
 (def routes ["/" {""                   :become-a-chef
-                  "cursos/"           {"" :recipes
-                                       [:recipe-id] :recipe}
+                  "cursos"            :cursos
+                  ;; "cursos/"           {"" :recipes
+                  ;;                      [:recipe-id] :recipe}
                   "consultoria"       :sign-up
                   "comercializacao"   :log-in}])
                   ;; "inbox/"            {"" :inboxes

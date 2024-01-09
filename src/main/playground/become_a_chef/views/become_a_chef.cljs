@@ -1,24 +1,31 @@
 (ns playground.become-a-chef.views.become-a-chef
   (:require
+   ["@mui/material" :refer [Box Card CardContent CardMedia Grid ThemeProvider
+                            Typography]]
    [playground.components.page-nav :refer [page-nav]]
-   ;; [playground.become-a-chef.views.agreement :refer [agreement]]
+   [playground.router :as router]
    [playground.theme :refer [cards]]
-   ["@mui/material" :refer [Box Grid Typography ButtonIcon IconButton
-                            Card CardMedia CardContent ThemeProvider]]))
-
+   [re-frame.core :as rf]))
+   ;; [playground.become-a-chef.views.agreement :refer [agreement]]
    ;; ["@mui/icons-material/CheckCircle" :default CheckCircleIcon]))
 
 (defn become-a-chef
   []
   (let [steps [{:img "/img/curso.jpeg"
                 :header "Cursos"
-                :sub-header "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut consequat enim, eget posuere tortor. Phasellus pretium hendrerit ornare. Etiam vitae ex in lectus dapibus pharetra ut ac massa. Pellentesque tincidunt suscipit dignissim. Suspendisse vestibulum blandit pretium."}
+                :sub-header "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut consequat enim, eget posuere tortor. Phasellus pretium hendrerit ornare. Etiam vitae ex in lectus dapibus pharetra ut ac massa. Pellentesque tincidunt suscipit dignissim. Suspendisse vestibulum blandit pretium."
+                :href (router/path-for :recipes)
+                :dispatch #(rf/dispatch [:set-active-nav :recipes])}
                {:img "/img/consultoria.jpeg"
                 :header "Consultoria"
-                :sub-header "Vivamus sagittis quam et metus egestas faucibus. In sit amet consequat enim. Sed vel lorem sagittis, fringilla ante sagittis, convallis lacus. Sed eu tellus fringilla, finibus libero quis, varius ex. Aenean tempus finibus enim. Aliquam erat volutpat. Fusce mollis blandit auctor."}
+                :sub-header "Vivamus sagittis quam et metus egestas faucibus. In sit amet consequat enim. Sed vel lorem sagittis, fringilla ante sagittis, convallis lacus. Sed eu tellus fringilla, finibus libero quis, varius ex. Aenean tempus finibus enim. Aliquam erat volutpat. Fusce mollis blandit auctor."
+                :href (router/path-for :sign-up)
+                :dispatch #(rf/dispatch [:set-active-nav :sign-up])}
                {:img "/img/comercializacao-exportacao.jpeg"
                 :header "Comercialização e Exportação"
-                :sub-header "Proin lacinia vitae ante nec laoreet. Etiam id tempus urna, in vehicula metus. Aliquam ac rutrum sapien, vel efficitur arcu. Nullam in enim ut enim vehicula sagittis. Sed tristique, orci sed tristique scelerisque, neque urna porta enim, eu feugiat risus est sed sem."}]]
+                :sub-header "Proin lacinia vitae ante nec laoreet. Etiam id tempus urna, in vehicula metus. Aliquam ac rutrum sapien, vel efficitur arcu. Nullam in enim ut enim vehicula sagittis. Sed tristique, orci sed tristique scelerisque, neque urna porta enim, eu feugiat risus est sed sem."
+                :href (router/path-for :log-in)
+                :dispatch #(rf/dispatch [:set-active-nav :log-in])}]]
 
     [:> ThemeProvider {:theme cards}
       [:> Box
@@ -59,18 +66,21 @@
                   :sx {:flex-direction "column"}
                   :gap 3
                   :justify-content "flex-start"}
-         (for [{:keys [img alt header sub-header]} steps]
+         (for [{:keys [img alt header sub-header href dispatch]} steps]
            ^{:key header}
-           [:> Card {:sx {:max-width "85%"
-                          :box-shadow 4
-                          "&:hover" {:background-color "primary.light"
-                                      :box-shadow 15}}}
-            [:> CardMedia
-             {:component "img"
-              :sx {:height "15em"}
-              :image img
-              :alt header}]
-            [:> CardContent
-             [:> Typography {:variant "h5"}
-                            header]
-             [:> Typography {:variant "body2" :color "text.secondary"} sub-header]]])]]]]))
+           [:a {:href href
+                :on-click dispatch}
+            [:> Card {:sx {:max-width "85%"
+                           :box-shadow 4
+                           "&:hover" {:background-color "primary.light"
+                                       :box-shadow 15}
+                           :as "a"}}
+             [:> CardMedia
+              {:component "img"
+               :sx {:height "15em"}
+               :image img
+               :alt header}]
+             [:> CardContent
+              [:> Typography {:variant "h5"}
+                             header]
+              [:> Typography {:variant "body2" :color "text.secondary"} sub-header]]]])]]]]))

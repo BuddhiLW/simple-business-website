@@ -6,12 +6,14 @@
    [day8.re-frame.tracing :refer-macros [fn-traced]]
    [playground.spec :refer [check-spec-interceptor]]
    [re-frame.core :as rf]
-   [playground.helpers :as h]))
+   [playground.helpers :as h]
+   [playground.db :refer [initial-app-db]]))
+
 (def recipes-interceptors [check-spec-interceptor])
 
 ;; (def recipes-endpoint "https://gist.githubusercontent.com/jacekschae/50ffe6e8851a5dfe35e932682ca32d85/raw/06e8041d0abf86e2c5d809a334cf8f18d3d6303b/recipes.json")
 ;; (def base "http://localhost:8666")
-(def recipes-endpoint "http://localhost:8666/v1/recipes")
+;; (def recipes-endpoint "http://localhost:8666/v1/recipes")
 
 (defn keywordize-id
   [coll]
@@ -21,16 +23,35 @@
               [(keyword (:id v)) (update v :id #(keyword (:id v)))]))
        (into {})))
 
-(rf/reg-event-fx
- :http/get-recipes
- recipes-interceptors
- (fn [{:keys [db]} _]
-   {:db (assoc-in db [:loading :recipes] true)
-    :http-xhrio {:method          :get
-                 :uri             recipes-endpoint
-                 :response-format (ajax/json-response-format {:keywords? true})
-                 :on-success      [:recipes/set-recipes]
-                 :on-failure      [:error/endpoint-request :get-recipes]}}))
+
+ ;; :set-active-page
+ ;; (fn-traced [db [_ page]]
+ ;;            (assoc-in db [:nav :active-page] page)))
+
+;; (rf/reg-event-db
+;;  :mock/cursos
+;;  (fn [db _]
+;;    (:db)))
+
+(rf/reg-event-db
+ :mock/get-cursos
+ (fn [db _]
+   (assoc-in db [:cursos] (:cursos initial-app-db))))
+
+#_(rf/reg-event-fx
+   :http/get-cursos
+   recipes-interceptors
+   (fn [{:keys [db]} _]
+     {:db (assoc-in db [:loading :recipes] true)}))
+    ;; :db (assoc-in db [:cursos] (:cursos initial-app-db))}))
+
+    ;; :db (assoc-in db [:recipes] {})}))
+
+    ;; :http-xhrio {:method          :get
+    ;;              :uri             recipes-endpoint
+    ;;              :response-format (ajax/json-response-format {:keywords? true})
+    ;;              :on-success      [:recipes/set-recipes]
+    ;;              :on-failure      [:error/endpoint-request :get-recipes]}}))
 
 (rf/reg-event-db
  :recipes/set-recipes
@@ -206,35 +227,35 @@
                  :on-success  [:success/post-recipe-success]
                  :on-failure  [:error/endpoint-request]}}))
 
-(rf/reg-event-fx
- :http/post-recipe-mock
- (fn [_ [_ _]]
-   {:http-xhrio {:method      :post
-                 :uri         (h/endpoint "v1" "recipes")
-                 :format      (ajax/json-request-format)
-                 :response-format (ajax/json-response-format {:keywords? true})
-                 :params      {:recipe/recipe_id "recipe-1"
-                               :recipe/name "recipe-1"
-                               :recipe/prep_time 10
-                               :recipe/img "https://wellandfull.com/wp-content/uploads/2016/02/WellandFull-4-21.jpg"
-                               :recipe/uid "user-1"
-                               :recipe/public false}
-                 :on-success  [:success/post-recipe-success]
-                 :on-failure  [:error/endpoint-request]}}))
+#_(rf/reg-event-fx
+   :http/post-recipe-mock
+   (fn [_ [_ _]]
+     {:http-xhrio {:method      :post
+                   :uri         (h/endpoint "v1" "recipes")
+                   :format      (ajax/json-request-format)
+                   :response-format (ajax/json-response-format {:keywords? true})
+                   :params      {:recipe/recipe_id "recipe-1"
+                                 :recipe/name "recipe-1"
+                                 :recipe/prep_time 10
+                                 :recipe/img "https://wellandfull.com/wp-content/uploads/2016/02/WellandFull-4-21.jpg"
+                                 :recipe/uid "user-1"
+                                 :recipe/public false}
+                   :on-success  [:success/post-recipe-success]
+                   :on-failure  [:error/endpoint-request]}}))
 
-(rf/reg-event-fx
- :success/post-recipe-success
- (fn-traced [_ [_ response]]
-            (js/console.log "post-recipe-success" response)))
+#_(rf/reg-event-fx
+   :success/post-recipe-success
+   (fn-traced [_ [_ response]]
+              (js/console.log "post-recipe-success" response)))
 
-(rf/reg-event-fx
- :http/get-recipes-log
- (fn-traced [{:keys [db]} _]
-            {:http-xhrio {:method          :get
-                          :uri             recipes-endpoint
-                          :response-format (ajax/json-response-format {:keywords? true})
-                          :on-success      [:log/sucess]
-                          :on-failure      [:error/endpoint-request :get-recipes]}}))
+#_(rf/reg-event-fx
+   :http/get-recipes-log
+   (fn-traced [{:keys [db]} _]
+              {:http-xhrio {:method          :get
+                            :uri             recipes-endpoint
+                            :response-format (ajax/json-response-format {:keywords? true})
+                            :on-success      [:log/sucess]
+                            :on-failure      [:error/endpoint-request :get-recipes]}}))
 
 (rf/reg-event-fx
  :log/sucess
